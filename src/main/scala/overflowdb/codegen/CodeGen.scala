@@ -1318,7 +1318,7 @@ class CodeGen(schema: Schema) {
             Some("null")
           else None
         val typ = getCompleteType(key)
-        fieldDescriptions += (camelCase(key.name), typ, optionalDefault)
+        fieldDescriptions += ((camelCase(key.name), typ, optionalDefault))
       }
       for (containedNode <- nodeType.containedNodes) {
         val optionalDefault = containedNode.cardinality match {
@@ -1329,7 +1329,7 @@ class CodeGen(schema: Schema) {
           case _                     => None
         }
         val typ = getCompleteType(containedNode)
-        fieldDescriptions += (containedNode.localName, typ, optionalDefault)
+        fieldDescriptions += ((containedNode.localName, typ, optionalDefault))
       }
       val defaultsVal = fieldDescriptions.reverse
         .map {case (name, typ, Some(default)) => s"var $name: $typ = $default"
